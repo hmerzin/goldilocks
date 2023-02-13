@@ -1,0 +1,613 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A0430512996D64F000123AB /* goldilocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0430502996D64F000123AB /* goldilocksApp.swift */; };
+		4A0430532996D64F000123AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0430522996D64F000123AB /* ContentView.swift */; };
+		4A0430552996D650000123AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A0430542996D650000123AB /* Assets.xcassets */; };
+		4A0430582996D650000123AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A0430572996D650000123AB /* Preview Assets.xcassets */; };
+		4A0430622996D650000123AB /* goldilocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0430612996D650000123AB /* goldilocksTests.swift */; };
+		4A04306C2996D650000123AB /* goldilocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A04306B2996D650000123AB /* goldilocksUITests.swift */; };
+		4A04306E2996D650000123AB /* goldilocksUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A04306D2996D650000123AB /* goldilocksUITestsLaunchTests.swift */; };
+		4A04307C29995BA2000123AB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4A04307B29995BA2000123AB /* Alamofire */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4A04305E2996D650000123AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A0430452996D64F000123AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A04304C2996D64F000123AB;
+			remoteInfo = goldilocks;
+		};
+		4A0430682996D650000123AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A0430452996D64F000123AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A04304C2996D64F000123AB;
+			remoteInfo = goldilocks;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4A04304D2996D64F000123AB /* goldilocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goldilocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A0430502996D64F000123AB /* goldilocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goldilocksApp.swift; sourceTree = "<group>"; };
+		4A0430522996D64F000123AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4A0430542996D650000123AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4A0430572996D650000123AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4A04305D2996D650000123AB /* goldilocksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = goldilocksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A0430612996D650000123AB /* goldilocksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goldilocksTests.swift; sourceTree = "<group>"; };
+		4A0430672996D650000123AB /* goldilocksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = goldilocksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A04306B2996D650000123AB /* goldilocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goldilocksUITests.swift; sourceTree = "<group>"; };
+		4A04306D2996D650000123AB /* goldilocksUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goldilocksUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4A04304A2996D64F000123AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A04307C29995BA2000123AB /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A04305A2996D650000123AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A0430642996D650000123AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4A0430442996D64F000123AB = {
+			isa = PBXGroup;
+			children = (
+				4A04304F2996D64F000123AB /* goldilocks */,
+				4A0430602996D650000123AB /* goldilocksTests */,
+				4A04306A2996D650000123AB /* goldilocksUITests */,
+				4A04304E2996D64F000123AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4A04304E2996D64F000123AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4A04304D2996D64F000123AB /* goldilocks.app */,
+				4A04305D2996D650000123AB /* goldilocksTests.xctest */,
+				4A0430672996D650000123AB /* goldilocksUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4A04304F2996D64F000123AB /* goldilocks */ = {
+			isa = PBXGroup;
+			children = (
+				4A0430502996D64F000123AB /* goldilocksApp.swift */,
+				4A0430522996D64F000123AB /* ContentView.swift */,
+				4A0430542996D650000123AB /* Assets.xcassets */,
+				4A0430562996D650000123AB /* Preview Content */,
+			);
+			path = goldilocks;
+			sourceTree = "<group>";
+		};
+		4A0430562996D650000123AB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4A0430572996D650000123AB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4A0430602996D650000123AB /* goldilocksTests */ = {
+			isa = PBXGroup;
+			children = (
+				4A0430612996D650000123AB /* goldilocksTests.swift */,
+			);
+			path = goldilocksTests;
+			sourceTree = "<group>";
+		};
+		4A04306A2996D650000123AB /* goldilocksUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4A04306B2996D650000123AB /* goldilocksUITests.swift */,
+				4A04306D2996D650000123AB /* goldilocksUITestsLaunchTests.swift */,
+			);
+			path = goldilocksUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4A04304C2996D64F000123AB /* goldilocks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A0430712996D650000123AB /* Build configuration list for PBXNativeTarget "goldilocks" */;
+			buildPhases = (
+				4A0430492996D64F000123AB /* Sources */,
+				4A04304A2996D64F000123AB /* Frameworks */,
+				4A04304B2996D64F000123AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = goldilocks;
+			packageProductDependencies = (
+				4A04307B29995BA2000123AB /* Alamofire */,
+			);
+			productName = goldilocks;
+			productReference = 4A04304D2996D64F000123AB /* goldilocks.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4A04305C2996D650000123AB /* goldilocksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A0430742996D650000123AB /* Build configuration list for PBXNativeTarget "goldilocksTests" */;
+			buildPhases = (
+				4A0430592996D650000123AB /* Sources */,
+				4A04305A2996D650000123AB /* Frameworks */,
+				4A04305B2996D650000123AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A04305F2996D650000123AB /* PBXTargetDependency */,
+			);
+			name = goldilocksTests;
+			productName = goldilocksTests;
+			productReference = 4A04305D2996D650000123AB /* goldilocksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4A0430662996D650000123AB /* goldilocksUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A0430772996D650000123AB /* Build configuration list for PBXNativeTarget "goldilocksUITests" */;
+			buildPhases = (
+				4A0430632996D650000123AB /* Sources */,
+				4A0430642996D650000123AB /* Frameworks */,
+				4A0430652996D650000123AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A0430692996D650000123AB /* PBXTargetDependency */,
+			);
+			name = goldilocksUITests;
+			productName = goldilocksUITests;
+			productReference = 4A0430672996D650000123AB /* goldilocksUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4A0430452996D64F000123AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					4A04304C2996D64F000123AB = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					4A04305C2996D650000123AB = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 4A04304C2996D64F000123AB;
+					};
+					4A0430662996D650000123AB = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 4A04304C2996D64F000123AB;
+					};
+				};
+			};
+			buildConfigurationList = 4A0430482996D64F000123AB /* Build configuration list for PBXProject "goldilocks" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4A0430442996D64F000123AB;
+			packageReferences = (
+				4A04307A29995BA2000123AB /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
+			productRefGroup = 4A04304E2996D64F000123AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4A04304C2996D64F000123AB /* goldilocks */,
+				4A04305C2996D650000123AB /* goldilocksTests */,
+				4A0430662996D650000123AB /* goldilocksUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4A04304B2996D64F000123AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A0430582996D650000123AB /* Preview Assets.xcassets in Resources */,
+				4A0430552996D650000123AB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A04305B2996D650000123AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A0430652996D650000123AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4A0430492996D64F000123AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A0430532996D64F000123AB /* ContentView.swift in Sources */,
+				4A0430512996D64F000123AB /* goldilocksApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A0430592996D650000123AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A0430622996D650000123AB /* goldilocksTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A0430632996D650000123AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A04306C2996D650000123AB /* goldilocksUITests.swift in Sources */,
+				4A04306E2996D650000123AB /* goldilocksUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4A04305F2996D650000123AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A04304C2996D64F000123AB /* goldilocks */;
+			targetProxy = 4A04305E2996D650000123AB /* PBXContainerItemProxy */;
+		};
+		4A0430692996D650000123AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A04304C2996D64F000123AB /* goldilocks */;
+			targetProxy = 4A0430682996D650000123AB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4A04306F2996D650000123AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4A0430702996D650000123AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4A0430722996D650000123AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"goldilocks/Preview Content\"";
+				DEVELOPMENT_TEAM = 8UR7G64J2J;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = harry.goldilocks;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4A0430732996D650000123AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"goldilocks/Preview Content\"";
+				DEVELOPMENT_TEAM = 8UR7G64J2J;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = harry.goldilocks;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4A0430752996D650000123AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = harry.goldilocksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/goldilocks.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/goldilocks";
+			};
+			name = Debug;
+		};
+		4A0430762996D650000123AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = harry.goldilocksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/goldilocks.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/goldilocks";
+			};
+			name = Release;
+		};
+		4A0430782996D650000123AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = harry.goldilocksUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = goldilocks;
+			};
+			name = Debug;
+		};
+		4A0430792996D650000123AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = harry.goldilocksUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = goldilocks;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4A0430482996D64F000123AB /* Build configuration list for PBXProject "goldilocks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A04306F2996D650000123AB /* Debug */,
+				4A0430702996D650000123AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A0430712996D650000123AB /* Build configuration list for PBXNativeTarget "goldilocks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A0430722996D650000123AB /* Debug */,
+				4A0430732996D650000123AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A0430742996D650000123AB /* Build configuration list for PBXNativeTarget "goldilocksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A0430752996D650000123AB /* Debug */,
+				4A0430762996D650000123AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A0430772996D650000123AB /* Build configuration list for PBXNativeTarget "goldilocksUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A0430782996D650000123AB /* Debug */,
+				4A0430792996D650000123AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4A04307A29995BA2000123AB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4A04307B29995BA2000123AB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A04307A29995BA2000123AB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4A0430452996D64F000123AB /* Project object */;
+}
