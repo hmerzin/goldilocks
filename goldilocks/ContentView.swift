@@ -186,28 +186,39 @@ struct NumberNavLink: View {
 }
 
 struct UsersView: View {
+  @StateObject var users = Users()
   var onLogout: () -> Void
   var body: some View {
+    var _ = debugPrint(users.users)
     VStack(alignment: .leading) {
-      List(entries) { entry in
+      List($users.users) { $entry in
         Section {
           NavigationLink {
             Text(entry.name)
           } label: {
             HStack {
-              ProfilePicture(color: entry.color, emoji: entry.profilePic)
+              ProfilePicture(color: randomColor(), emoji: randomFish())
               Text(entry.name).padding().font(.title2).fontWeight(.bold)
             }
           }
-        }
-      }.listStyle(.insetGrouped)
+        } header: {
+          Text("Users").font(.system(.title2, design: .rounded)).fontWeight(.semibold).foregroundColor(
+            .gray)
+          
+        }.textCase(.none)
+      }.refreshable {
+        users.getUsers()
+      }
+      .listStyle(.insetGrouped)
       Button(
         "Logout",
         action: {
           onLogout()
         }
       ).buttonStyle(ButtonStyles()).padding()
-    }
+    }.onAppear {
+      users.getUsers()
+    }.padding([.top])
   }
 }
 
@@ -225,10 +236,12 @@ struct ProfilePicture: View {
 }
 
 struct ContentView: View {
-  @State var done: Bool
+  @State var done: Bool = UserDefaults.standard.value(forKey: "Token") != nil
   init() {
-    done = UserDefaults.standard.value(forKey: "Token") != nil
+//    UserDefaults.standard.set("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzYzMTcxNzQsImV4cCI6MTcwNzg3NDc3NH0.HjzSPH1u6BvDo1y5HfwHFoTWIYDUZBGnTpXc7vb-KGU", forKey: "Token")
+    print("DONE:", done)
   }
+  @Environment(\.colorScheme) var colorScheme: ColorScheme
   var body: some View {
     NavigationView {
       let _ = print("DONE: ", done)
@@ -239,6 +252,7 @@ struct ContentView: View {
           UserDefaults.standard.removeObject(forKey: "Token")
           done = false
         }).navigationTitle("Welcome 34 Cal")
+          .background(colorScheme == .dark ? .black : Color(.systemGroupedBackground))
       }
     }.font(.system(.body, design: .rounded))
   }
@@ -252,7 +266,7 @@ struct NameView: View {
   var onSubmit: (_: String) -> Void
   var body: some View {
     FormView(
-      title: "Let's get introduced", subtitle: "What's your name?", emoji: "🐟",
+      title: "Let's get introduced", subtitle: "What's your name?", emoji: randomFish(),
       textField: Group {
         TextField("Name", text: $name).textFieldStyle(TFStyle())
         Spacer().frame(height: 24)
@@ -280,7 +294,7 @@ struct NumberView: View {
   var body: some View {
     FormView(
       title: "Hello \(name), Let's get you verified", subtitle: "What's your phone number?",
-      emoji: "🐠",
+      emoji: randomFish(),
 
       textField: PhoneNumberEntry(phoneNumber: $phoneNumber),
       button: SubmitButton(
@@ -329,7 +343,7 @@ struct SignupFlow: View {
   func onSubmitNumber() {
     loading = true
     AF.request(
-      "http://10.0.0.38:8080/signup", method: .post,
+      "\(BASE_URL)/signup", method: .post,
       parameters: ["name": name, "phoneNumber": numbers], encoder: JSONParameterEncoder.default
     ).response { response in
       loading = false
@@ -343,17 +357,15 @@ struct SignupFlow: View {
   func onSubmitCode(code: String) {
     loading = true
     AF.request(
-      "http://10.0.0.38:8080/verify", method: .post,
-      parameters: ["code": code, "phoneNumber": numbers], encoder: JSONParameterEncoder.default
+      "\(BASE_URL)/verify", method: .post,
+      parameters: ["code": code, "phoneNumber": numbers, "name": name], encoder: JSONParameterEncoder.default
     ).responseDecodable(of: VerifyResponse.self) { response in
       loading = false
       debugPrint(response)
-      debugPrint(response.response?.statusCode)
       if response.response?.statusCode != 200 {
         error = "Failed to verify, please try again!"
         return
       }
-      print("TOKEN: ", response.value?.token)
       if response.value?.token == nil {
         error = "Failed to obtain token, please try again"
       }
