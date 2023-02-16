@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import Charts
 import SwiftUI
 
 let circlepow = 6
@@ -65,7 +66,9 @@ struct ButtonStyles: ButtonStyle {
       //            .stroke(.black, lineWidth: 3).frame(height: 40))
     }.opacity(configuration.isPressed ? 0.8 : 1.0)
       .scaleEffect(configuration.isPressed ? 0.7 : 1.0).animation(
-        .spring(dampingFraction: 0.3), value: configuration.isPressed)
+        .interpolatingSpring(mass: 5, stiffness: 1000, damping: 100, initialVelocity: 5),
+//        .spring(response: 100, dampingFraction: 0.3, blendDuration: 0.01),
+        value: configuration.isPressed)
     //.interpolatingSpring(mass: 0.8, stiffness: 10, damping: 10, initialVelocity: 3), value: pressed)
   }
 }
@@ -185,20 +188,100 @@ struct NumberNavLink: View {
   }
 }
 
+var graphData: [Snack] = [
+  .init(_id: "0", phoneNumber: "1", createdAt: Date()),
+  .init(_id: "0", phoneNumber: "2", createdAt: Date()),
+  .init(_id: "0", phoneNumber: "3", createdAt: Date()),
+  .init(_id: "0", phoneNumber: "1", createdAt: Date()),
+  .init(_id: "0", phoneNumber: "2", createdAt: Date()),
+  .init(_id: "0", phoneNumber: "3", createdAt: Date()),
+  .init(_id: "0", phoneNumber: "1", createdAt: Date()),
+  .init(_id: "0", phoneNumber: "2", createdAt: Date()),
+  .init(_id: "0", phoneNumber: "1", createdAt: Date()),
+  .init(_id: "0", phoneNumber: "2", createdAt: Date()),
+]
+struct BarGraph: View {
+  //  var barGraphData: [String: [Snack]] = [:]
+  //  var sortedKeys: [String] = []
+  //  init() {
+  //    for item in graphData {
+  //      if (barGraphData.keys.contains(item.phoneNumber)) {
+  //        barGraphData[item.phoneNumber]!.append(item)
+  //      }
+  //    }
+  //    sortedKeys = barGraphData.keys.sorted(by: {
+  //      (barGraphData[$0]?.count ?? 0) - (barGraphData[$1]?.count ?? 0) > 0 ? true : false
+  //    })
+  //  }
+  var body: some View {
+    Chart {
+      //      BarMark(
+      //          x: .value("Number", sortedKeys[0]),
+      //          y: .value("Snacks", barGraphData[sortedKeys[0]]?.count ?? 0)
+      //      )
+      //    }
+      BarMark(
+        x: .value("Shape Type", "Harry"),
+        y: .value("Total Count", 5)
+      ).cornerRadius(10)
+      BarMark(
+        x: .value("Shape Type", "Max"),
+        y: .value("Total Count", 8)
+      ).cornerRadius(10)
+      BarMark(
+        x: .value("Shape Type", "Vittorio"),
+        y: .value("Total Count", 4)
+      ).cornerRadius(10)
+    }.chartYAxis {
+      AxisMarks(position: .trailing) { _ in
+        AxisValueLabel()
+      }
+    }
+    .chartXAxis {
+      AxisMarks(position: .bottom) { _ in
+        AxisValueLabel()
+      }
+    }.fontWeight(.heavy).frame(minHeight: 100)
+  }
+}
+
 struct UsersView: View {
   @StateObject var users = Users()
   var onLogout: () -> Void
   var body: some View {
     var _ = debugPrint(users.users)
     VStack(alignment: .leading) {
-      List($users.users) { $entry in
+      List() {
         Section {
-          NavigationLink {
-            Text(entry.name)
-          } label: {
-            HStack {
-              ProfilePicture(color: randomColor(), emoji: randomFish())
-              Text(entry.name).padding().font(.title2).fontWeight(.bold)
+          BarGraph().padding()
+        } header: {
+          Text("Top Snackers").font(.system(.title2, design: .rounded)).fontWeight(.semibold).foregroundColor(
+            .gray)
+        }.textCase(.none)
+        Section {
+          ForEach($users.users) { $entry in
+            NavigationLink {
+              VStack(alignment: .leading) {
+                Section {
+                  List(entry.snacks) {snack in
+                    HStack {
+                      ProfilePicture(color: randomColor(), emoji: randomFish())
+                      Text(snack.createdAt.formatted()).padding().font(.title2).fontWeight(.bold)
+                      }
+                  }.frame(alignment: .leading)
+                } header: {
+                  Text("Snacks")
+                    .font(.system(.title2, design: .rounded)).fontWeight(.semibold).foregroundColor(
+                    .gray)
+                  Spacer()
+                }.frame(alignment: .leading)
+              }.navigationTitle($entry.name).padding()
+            } label: {
+              HStack {
+                ProfilePicture(color: randomColor(), emoji: randomFish())
+                  Text(entry.name).padding().font(.title2).fontWeight(.bold)
+                }
+              
             }
           }
         } header: {
@@ -210,12 +293,18 @@ struct UsersView: View {
         users.getUsers()
       }
       .listStyle(.insetGrouped)
-      Button(
-        "Logout",
-        action: {
-          onLogout()
-        }
-      ).buttonStyle(ButtonStyles()).padding()
+      HStack {
+        Button("Enroll", action: {
+          users.enroll()
+        }).buttonStyle(ButtonStyles()).padding()
+        Button(
+          "Logout",
+          action: {
+            onLogout()
+          }
+        ).buttonStyle(ButtonStyles()).padding(
+        )
+      }
     }.onAppear {
       users.getUsers()
     }.padding([.top])
@@ -238,7 +327,7 @@ struct ProfilePicture: View {
 struct ContentView: View {
   @State var done: Bool = UserDefaults.standard.value(forKey: "Token") != nil
   init() {
-//    UserDefaults.standard.set("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzYzMTcxNzQsImV4cCI6MTcwNzg3NDc3NH0.HjzSPH1u6BvDo1y5HfwHFoTWIYDUZBGnTpXc7vb-KGU", forKey: "Token")
+// UserDefaults.standard.set("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzYzMTcxNzQsImV4cCI6MTcwNzg3NDc3NH0.HjzSPH1u6BvDo1y5HfwHFoTWIYDUZBGnTpXc7vb-KGU", forKey: "Token")
     print("DONE:", done)
   }
   @Environment(\.colorScheme) var colorScheme: ColorScheme
@@ -251,7 +340,7 @@ struct ContentView: View {
         UsersView(onLogout: {
           UserDefaults.standard.removeObject(forKey: "Token")
           done = false
-        }).navigationTitle("Welcome 34 Cal")
+        }).navigationTitle(Text("Welcome Fellas").font(.system(.body, design: .rounded)))
           .background(colorScheme == .dark ? .black : Color(.systemGroupedBackground))
       }
     }.font(.system(.body, design: .rounded))
@@ -409,9 +498,11 @@ struct ContentView_Previews: PreviewProvider {
     //        ProfilePicture(color:.green, emoji: "🍣")
     //        NumberView(name: "Harry" )
     SignupFlow(done: .constant(false))
-    UsersView(onLogout: {
-      print("log out")
-
-    })
+    NavigationView {
+      UsersView(onLogout: {
+        print("log out")
+        
+      }).navigationTitle("Welcome 34 Cal")
+    }
   }
 }
