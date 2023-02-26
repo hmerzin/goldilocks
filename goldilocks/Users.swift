@@ -31,8 +31,23 @@ struct Snack: Decodable, Hashable, Identifiable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self._id = try container.decode(String.self, forKey: ._id)
     self.phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
-    self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+    let crAt = try container.decode(Double.self, forKey: .createdAt)
+    self.createdAt = Date(timeIntervalSince1970: crAt / 1000)
+//    container.key
+//    decoder.dateDecodingStrategy = .secondsSince1970
   }
+  
+  func formatDate() -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EE, MMM d, yyyy"
+    return dateFormatter.string(from: self.createdAt)
+  }
+  func formatTime() -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "hh:mm a"
+    return dateFormatter.string(from: self.createdAt)
+  }
+  
 }
 
 struct User: Decodable, Hashable, Identifiable {

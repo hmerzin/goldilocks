@@ -200,7 +200,7 @@ var graphData: [Snack] = [
   .init(_id: "0", phoneNumber: "1", createdAt: Date()),
   .init(_id: "0", phoneNumber: "2", createdAt: Date()),
 ]
-struct BarGraph: View {
+struct BarGraphPreview: View {
   //  var barGraphData: [String: [Snack]] = [:]
   //  var sortedKeys: [String] = []
   //  init() {
@@ -245,49 +245,153 @@ struct BarGraph: View {
   }
 }
 
+struct BarGraph: View {
+  @Binding var users: [User]
+  
+  @State var topThree: [User] = []
+  
+  var body: some View {
+    Chart {
+      ForEach(topThree) {user in
+        BarMark(
+          x: .value("Shape Type", user.name),
+          y: .value("Total Count", user.snacks.count)
+        ).cornerRadius(10)
+      }
+    }.chartYAxis {
+      AxisMarks(position: .trailing) { _ in
+        AxisValueLabel()
+      }
+    }
+    .chartXAxis {
+      AxisMarks(position: .bottom) { _ in
+        AxisValueLabel()
+      }
+    }.fontWeight(.heavy).frame(minHeight: 100).onChange(of: users, perform: {users in
+       let sortedUsers = users.sorted(by: {(a: User, b: User) in
+        return a.snacks.count > b.snacks.count
+      })
+      topThree = Array(sortedUsers[..<5])
+    })
+  }
+}
+
+struct UserView: View {
+  
+  var user: User
+  @Environment(\.colorScheme) var colorScheme: ColorScheme
+  
+  var days: [String] = []
+  var snackDays: [Int] = []
+  var hasSnacks: Bool = false
+  
+  init(user: User) {
+    self.user = user
+    for i in 0..<7 {
+      let date = Calendar.current.date(byAdding: .day, value: -(6-i), to: Date()) ?? Date()
+      let dateFormat = DateFormatter()
+      dateFormat.dateFormat = "EE"
+      let dateString = dateFormat.string(from: date)
+      days.append(dateString)
+      var counter = 0
+      for snack in user.snacks {
+        hasSnacks = true
+        counter += Calendar.current.isDate(snack.createdAt, inSameDayAs: date) ? 1 : 0
+      }
+      snackDays.append(counter)
+    }
+  }
+  
+  
+  var body: some View {
+    
+    VStack(alignment: .leading) {
+      List() {
+        Group {
+          Section {
+            Chart {
+//              ForEach(user.snacks) {day in
+//                LineMark(
+//                  x: .value("Shape Type", 8),//days[day]),
+//                  y: .value("Total Count", 8)//snackDays[day])
+//                ).cornerRadius(10)
+//              }
+              ForEach(0..<7, id: \.self) {day in
+                LineMark(x: .value("day", days[day]), y: .value("snacks", snackDays[day]))
+              }
+            }.chartYScale(domain: 0...20)
+            .padding().chartYAxis {
+              AxisMarks(position: .trailing) { _ in
+                AxisValueLabel()
+              }
+            }
+            .chartXAxis {
+              AxisMarks(position: .bottom) { _ in
+                AxisValueLabel()
+              }
+            }.fontWeight(.heavy).frame(minHeight: 100)
+            
+          } header: {
+            Text("Weekly History").font(.system(.title2, design: .rounded)).fontWeight(.semibold).foregroundColor(
+              .gray).textCase(.none)
+          }
+          Section {
+            ForEach(user.snacks) {snack in
+              HStack {
+                ProfilePicture(color: randomColor(), emoji: randomFish())
+                VStack(alignment:.leading) {
+                  Text(snack.formatDate()).font(.title2).fontWeight(.bold).scaledToFit().minimumScaleFactor(0.8)
+                  Text(snack.formatTime()).font(.title3).fontWeight(.bold).foregroundColor(.gray)
+                }
+              }
+            }
+          } header: {
+            Text("Snacks").font(.system(.title2, design: .rounded)).fontWeight(.semibold).foregroundColor(
+              .gray).textCase(.none)
+          }
+          .frame(alignment: .leading)
+        }.frame(alignment: .leading)
+      }
+    }.navigationTitle(user.name)//.padding([.leading, .top, .trailing])
+      .background(colorScheme == .dark ? .black : Color(.systemGroupedBackground))
+    
+  }
+}
+
+
+
+
 struct UsersView: View {
   @StateObject var users = Users()
+  @State private var showingEnrollSheet = false
+
   var onLogout: () -> Void
   var body: some View {
     var _ = debugPrint(users.users)
     VStack(alignment: .leading) {
       List() {
         Section {
-          BarGraph().padding()
+          BarGraph(users: $users.users).padding()
         } header: {
           Text("Top Snackers").font(.system(.title2, design: .rounded)).fontWeight(.semibold).foregroundColor(
             .gray)
         }.textCase(.none)
         Section {
           ForEach($users.users) { $entry in
-            NavigationLink {
-              VStack(alignment: .leading) {
-                Section {
-                  List(entry.snacks) {snack in
-                    HStack {
-                      ProfilePicture(color: randomColor(), emoji: randomFish())
-                      Text(snack.createdAt.formatted()).padding().font(.title2).fontWeight(.bold)
-                      }
-                  }.frame(alignment: .leading)
-                } header: {
-                  Text("Snacks")
-                    .font(.system(.title2, design: .rounded)).fontWeight(.semibold).foregroundColor(
-                    .gray)
-                  Spacer()
-                }.frame(alignment: .leading)
-              }.navigationTitle($entry.name).padding()
-            } label: {
+            NavigationLink(destination: UserView(user: entry)){
               HStack {
                 ProfilePicture(color: randomColor(), emoji: randomFish())
-                  Text(entry.name).padding().font(.title2).fontWeight(.bold)
-                }
-              
+                
+                VStack.init(alignment: .leading) {
+                  Text(entry.name).font(.title2).fontWeight(.bold)
+                  Text("\(entry.snacks.count) snack\(entry.snacks.count == 1 ? "" : "s") taken").font(.title3).fontWeight(.bold).foregroundColor(.gray)
+                }.padding()
+              }
             }
           }
         } header: {
           Text("Users").font(.system(.title2, design: .rounded)).fontWeight(.semibold).foregroundColor(
             .gray)
-          
         }.textCase(.none)
       }.refreshable {
         users.getUsers()
@@ -295,8 +399,13 @@ struct UsersView: View {
       .listStyle(.insetGrouped)
       HStack {
         Button("Enroll", action: {
-          users.enroll()
-        }).buttonStyle(ButtonStyles()).padding()
+          showingEnrollSheet.toggle()
+        }).sheet(isPresented: $showingEnrollSheet) {
+          Button("Enroll") {
+            users.enroll()
+          }.presentationDetents([.medium]).presentationDragIndicator(.visible)
+        }
+        .buttonStyle(ButtonStyles()).padding()
         Button(
           "Logout",
           action: {
@@ -327,6 +436,10 @@ struct ProfilePicture: View {
 struct ContentView: View {
   @State var done: Bool = UserDefaults.standard.value(forKey: "Token") != nil
   init() {
+    if((ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] ?? "0") == "1") {
+          UserDefaults.standard.set(preview_key, forKey: "Token")
+    }
+    
 // UserDefaults.standard.set("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzYzMTcxNzQsImV4cCI6MTcwNzg3NDc3NH0.HjzSPH1u6BvDo1y5HfwHFoTWIYDUZBGnTpXc7vb-KGU", forKey: "Token")
     print("DONE:", done)
   }
@@ -340,10 +453,12 @@ struct ContentView: View {
         UsersView(onLogout: {
           UserDefaults.standard.removeObject(forKey: "Token")
           done = false
-        }).navigationTitle(Text("Welcome Fellas").font(.system(.body, design: .rounded)))
+        })
+        .navigationTitle(Text("Welcome Fellas").font(.system(.body, design: .rounded)))
           .background(colorScheme == .dark ? .black : Color(.systemGroupedBackground))
       }
     }.font(.system(.body, design: .rounded))
+      .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 
@@ -493,6 +608,7 @@ struct SignupFlow: View {
 
 struct ContentView_Previews: PreviewProvider {
   @State var done: Bool = false
+
   static var previews: some View {
     ContentView()
     //        ProfilePicture(color:.green, emoji: "🍣")
